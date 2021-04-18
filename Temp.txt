@@ -1,0 +1,124 @@
+{
+   "content_type":"photo",
+   "id":13,
+   "message_id":13,
+   "from_user":{
+      "id":386684364,
+      "is_bot":false,
+      "first_name":"Mish",
+      "username":"MishZor",
+      "last_name":"None",
+      "language_code":"ru",
+      "can_join_groups":"None",
+      "can_read_all_group_messages":"None",
+      "supports_inline_queries":"None"
+   },
+   "date":1618640098,
+   "chat":{
+      "id":386684364,
+      "type":"private",
+      "title":"None",
+      "username":"MishZor",
+      "first_name":"Mish",
+      "last_name":"None",
+      "photo":"None",
+      "bio":"None",
+      "description":"None",
+      "invite_link":"None",
+      "pinned_message":"None",
+      "permissions":"None",
+      "slow_mode_delay":"None",
+      "sticker_set_name":"None",
+      "can_set_sticker_set":"None",
+      "linked_chat_id":"None",
+      "location":"None"
+   },
+   "forward_from":"None",
+   "forward_from_chat":"None",
+   "forward_from_message_id":"None",
+   "forward_signature":"None",
+   "forward_sender_name":"None",
+   "forward_date":"None",
+   "reply_to_message":"None",
+   "edit_date":"None",
+   "media_group_id":"None",
+   "author_signature":"None",
+   "text":"None",
+   "entities":"None",
+   "caption_entities":"None",
+   "audio":"None",
+   "document":"None",
+   "photo":[
+      <telebot.types.PhotoSize object at 0x03D7C250>,
+      <telebot.types.PhotoSize object at 0x03D7C230>
+   ],
+   "sticker":"None",
+   "video":"None",
+   "video_note":"None",
+   "voice":"None",
+   "caption":"None",
+   "contact":"None",
+   "location":"None",
+   "venue":"None",
+   "animation":"None",
+   "dice":"None",
+   "new_chat_member":"None",
+   "new_chat_members":"None",
+   "left_chat_member":"None",
+   "new_chat_title":"None",
+   "new_chat_photo":"None",
+   "delete_chat_photo":"None",
+   "group_chat_created":"None",
+   "supergroup_chat_created":"None",
+   "channel_chat_created":"None",
+   "migrate_to_chat_id":"None",
+   "migrate_from_chat_id":"None",
+   "pinned_message":"None",
+   "invoice":"None",
+   "successful_payment":"None",
+   "connected_website":"None",
+   "reply_markup":"None",
+   "json":{
+      "message_id":13,
+      "from":{
+         "id":386684364,
+         "is_bot":false,
+         "first_name":"Mish",
+         "username":"MishZor",
+         "language_code":"ru"
+      },
+      "chat":{
+         "id":386684364,
+         "first_name":"Mish",
+         "username":"MishZor",
+         "type":"private"
+      },
+      "date":1618640098,
+      "photo":[
+         {
+            "file_id":"AgACAgIAAxkBAAMNYHp84nOD9nYkLtnPYLVCx57CzsIAAlqxMRscLNhL_HZS71d1WJ-bkAeiLgADAQADAgADbQADzC4BAAEfBA",
+            "file_unique_id":"AQADm5AHoi4AA8wuAQAB",
+            "file_size":19425,
+            "width":268,
+            "height":320
+         },
+         {
+            "file_id":"AgACAgIAAxkBAAMNYHp84nOD9nYkLtnPYLVCx57CzsIAAlqxMRscLNhL_HZS71d1WJ-bkAeiLgADAQADAgADeAADyy4BAAEfBA",
+            "file_unique_id":"AQADm5AHoi4AA8suAQAB",
+            "file_size":37145,
+            "width":434,
+            "height":518
+         }
+      ]
+   }
+}
+
+
+photo 1
+ "file_id":"AgACAgIAAxkBAAMNYHp84nOD9nYkLtnPYLVCx57CzsIAAlqxMRscLNhL_HZS71d1WJ-bkAeiLgADAQADAgADeAADyy4BAAEfBA"
+
+ photo 2
+ 'file_id': 'AgACAgIAAxkBAAMOYHp_8OHO1f3mq4sBxr-KXJ6a3AUAAmixMRscLNhLecBbM_l0jpTB6FaiLgADAQADAgADbQAD-UEBAAEfBA'
+
+ photo 3
+'file_id': 'AgACAgIAAxkBAAMPYHqB17EQFirgnZuxvXT2R8MjbfYAAm6xMRscLNhLV6IakNcgPdmm-FmiLgADAQADAgADbQADezABAAEfBA'
