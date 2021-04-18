@@ -19,17 +19,9 @@ markersNorm = []
 for i in markers:
     print(morph.parse(i)[0].normal_form)
 """
+import random
+import time
 
-import re
-
-phones_str = str('9160000000')
-
-
-def check_string(string):
-    phone = re.sub(r'\b\D', '', string)
-    clear_phone = re.sub(r'[\ \(]?', '', phone)
-    if re.findall(r'^[\+7|8]*?\d{10}$', clear_phone) or re.match(r'^\w+[\.]?(\w+)*\@(\w+\.)*\w{2,}$',string):
-        return(bool(string))
-    else: return(False)
-
-print(check_string(phones_str))
+for i in range(100):
+    print("Лот № " + str(i) + "для itemid " + str(random.uniform(171742819275124, 8814280592849644)) + " float = " + str(random.uniform(0.001, 5.0)*0.1) )
+    time.sleep(random.uniform(0.001, 1))
