@@ -82,11 +82,13 @@ def text_message(message):
         selectionNameMode = True
         selectionPhoneMode = False
 
+
     if (selectionDeliveryMode):
         bot.send_message(message.chat.id,"Cкажите вам номер", reply_markup=hideBoard)
         selectionDelivery = Text
         selectionPhoneMode = True
         selectionDeliveryMode = False
+
 
     if (selectionAdressMode):
         hints = telebot.types.ReplyKeyboardMarkup(True, False)
@@ -109,7 +111,6 @@ def text_message(message):
 
         selectionTshirtMode = False
         selectionSizeMode = True
-
 
 
 @bot.message_handler(content_types=['photo'])
