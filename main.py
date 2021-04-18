@@ -1,6 +1,7 @@
 import telebot
 import sqlite3
 import Tsort
+import check
 from telebot import types
 
 
@@ -27,6 +28,25 @@ selectionDelivery = ' '
 
 hideBoard = types.ReplyKeyboardRemove()
 
+@bot.message_handler(content_types=['contact'])
+def contact(message):
+    print(message)
+
+    global selectionPhoneMode
+    global selectionNameMode
+    global selectionPhone
+
+
+    if (selectionPhoneMode):
+            bot.send_message(message.chat.id, "Как к Вам обращаться?")
+            selectionPhone = message.contact.phone_number
+            selectionNameMode = True
+            selectionPhoneMode = False
+            check.check_phone(message.contact.phone_number)
+            print(check.check_phone(message.contact.phone_number))
+
+
+
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -42,8 +62,6 @@ def start_message(message):
     global selectionTshirtMode
     selectionTshirtMode = True
     print(message)
-
-
 
 
 @bot.message_handler(commands=['help'])
@@ -71,20 +89,23 @@ def text_message(message):
 
     if (selectionNameMode):
         bot.send_message(message.chat.id,"Ok")
-        check=  (selectionTshirt + "\nразмер"+ selectionSize + "\nадрес:"+ selectionAdress+ "\nВаш номер:"+ selectionPhone)
-        bot.send_message(message.chat.id, check)
+        selection =  (selectionTshirt + "\nразмер"+ selectionSize + "\nадрес:"+ selectionAdress+ "\nВаш номер:"+ selectionPhone)
+        bot.send_message(message.chat.id, selection)
         selectionName = Text
         selectionNameMode = False
 
     if (selectionPhoneMode):
-        bot.send_message(message.chat.id,"Как к вам обращаться?")
-        selectionPhone = Text
-        selectionNameMode = True
-        selectionPhoneMode = False
+        if (check.check_phone(Text)):
+            bot.send_message(message.chat.id, "Как к вам обращаться?")
+            selectionPhone = Text
+            selectionNameMode = True
+            selectionPhoneMode = False
+        else:
+            bot.send_message(message.chat.id, "кажется вы неправильно ввели номер")
 
 
     if (selectionDeliveryMode):
-        bot.send_message(message.chat.id,"Cкажите вам номер", reply_markup=hideBoard)
+        bot.send_message(message.chat.id,"Cкажите Ваш номер", reply_markup=hideBoard)
         selectionDelivery = Text
         selectionPhoneMode = True
         selectionDeliveryMode = False
@@ -116,7 +137,6 @@ def text_message(message):
 @bot.message_handler(content_types=['photo'])
 def set_photo(message):
     print(message)
-
 
 if __name__ == "__main__":
     bot.polling()
