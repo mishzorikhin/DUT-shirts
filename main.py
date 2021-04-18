@@ -83,7 +83,7 @@ def text_message(message):
         selectionPhoneMode = False
 
     if (selectionDeliveryMode):
-        bot.send_message(message.chat.id,"скажите вам номер", reply_markup=hideBoard)
+        bot.send_message(message.chat.id,"Cкажите вам номер", reply_markup=hideBoard)
         selectionDelivery = Text
         selectionPhoneMode = True
         selectionDeliveryMode = False
