@@ -2,6 +2,8 @@ import telebot
 import sqlite3
 import Tsort
 import check
+import startCheck
+import checkUserType
 from telebot import types
 
 
@@ -17,6 +19,10 @@ selectionAdressMode = False
 selectionPhoneMode = False
 selectionNameMode = False
 selectionDeliveryMode = False
+
+newUser = True
+userType = False
+
 
 
 selectionTshirt = ''
@@ -51,18 +57,31 @@ def contact(message):
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.chat.id, "/TShirts - каталог футболок \n"
+    global userType
+
+
+    startCheck.start(message)
+
+    if(checkUserType.checkUserType(message.from_user.id)):
+        bot.send_message(message.chat.id, "Я вас узнал вы админ, для вас доступны функции \n"
+                            "/add - обавление \n"
+                            "/edit - изменение"
+                            )
+        userType = True
+
+
+    bot.send_message(message.chat.id, "/catalog - каталог футболок \n"
                                       #"/orders - заказы"
                                       "/help - помощь")
-    print(message)
 
-@bot.message_handler(commands=['TShirts'])
+
+@bot.message_handler(commands=['catalog'])
 def start_message(message):
 
     Tsort.showTSorts(message.chat.id)
     global selectionTshirtMode
     selectionTshirtMode = True
-    print(message)
+    print(message.text)
 
 
 @bot.message_handler(commands=['help'])
@@ -73,7 +92,7 @@ def help_command(message):
 @bot.message_handler(content_types=['text'])
 def text_message(message):
     Text = message.text
-    print(message)
+    print(message.text)
     global selectionTshirtMode
     global selectionSizeMode
     global selectionAdressMode
@@ -90,7 +109,8 @@ def text_message(message):
 
     if (selectionNameMode):
         bot.send_message(message.chat.id,"Ok")
-        selection =  (selectionTshirt + "\nразмер"+ selectionSize + "\nадрес:"+ selectionAdress+ "\nВаш номер:"+ selectionPhone)
+        selection = (selectionTshirt + "\nразмер"+ selectionSize + "\nадрес:"+ selectionAdress+ "\nВаш номер:"+ selectionPhone)
+        print(selection)
         bot.send_message(message.chat.id, selection)
         selectionName = Text
         selectionNameMode = False
@@ -134,10 +154,6 @@ def text_message(message):
         selectionTshirtMode = False
         selectionSizeMode = True
 
-
-@bot.message_handler(content_types=['photo'])
-def set_photo(message):
-    print(message)
 
 if __name__ == "__main__":
     bot.polling()
