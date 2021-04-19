@@ -16,11 +16,13 @@ def showTSorts(userID):
     # Запрос в базе
     # запись в массив
 
+
     conn = sqlite3.connect('DUTShirts.db')
     cur = conn.cursor()
 
     cur.execute("SELECT * FROM TShirts;")
     all_result = cur.fetchall()
+
 
     for i in range(3):
 
@@ -40,16 +42,14 @@ def showTSorts(userID):
 
 
 
-def showTSort(userID,TSort):
+def showTSort(userID, TSort):
     conn = sqlite3.connect('DUTShirts.db')
     cur = conn.cursor()
 
     cur.execute("SELECT * FROM TShirts WHERE id = ?;", TSort)
     all_result = cur.fetchall()
 
-
     hints = telebot.types.ReplyKeyboardMarkup(True, False)
-
 
     hints.row("S", "M", 'L')
 
