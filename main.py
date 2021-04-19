@@ -39,7 +39,7 @@ def contact(message):
 
     if (selectionPhoneMode):
             bot.send_message(message.chat.id, "Как к Вам обращаться?")
-            bot.send_message(message.chat.id, message)
+            #bot.send_message(message.chat.id, message)
             selectionPhone = message.contact.phone_number
             selectionNameMode = True
             selectionPhoneMode = False
