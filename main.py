@@ -43,7 +43,7 @@ def location(message):
 
         keyboard.row("Почта России", "СДЭК")
         bot.send_message(message.chat.id, "Теперь давай выберем способ доставки", reply_markup=keyboard)
-        selectionAdress = message.location.longitude
+        selectionAdress = str(message.location.longitude) + " " + str(message.location.latitude)
         selectionDeliveryMode = True
         selectionAdressMode = False
 
