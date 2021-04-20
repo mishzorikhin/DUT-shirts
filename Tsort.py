@@ -24,7 +24,7 @@ def showTSorts(userID):
     all_result = cur.fetchall()
 
 
-    for i in range(3):
+    for i in range(1):
 
         sizeS = all_result[i][3]
         sizeM = all_result[i][4]
