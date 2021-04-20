@@ -107,7 +107,6 @@ def geophone(message):
     keyboard.add(button_phone, button_geo)
     bot.send_message(message.chat.id, "Отправьте  свой номер телефона или поделись местоположением", reply_markup=keyboard)
 
-
 @bot.message_handler(content_types=['text'])
 def text_message(message):
     Text = message.text
