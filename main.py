@@ -169,7 +169,7 @@ def text_message(message):
     if selectionSizeMode:
         keyboard = telebot.types.ReplyKeyboardMarkup(True, False)
 
-        button_geo = types.KeyboardButton(text="Отправить местоположение", request_location=True)
+        button_geo = types.KeyboardButton(text="Отправить   местоположение", request_location=True)
         keyboard.add(button_geo)
 
         bot.send_message(message.chat.id, "Хорошо, теперь скажите куда вам доставить", reply_markup=keyboard)
