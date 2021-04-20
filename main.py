@@ -1,9 +1,11 @@
 import telebot
 import sqlite3
 import Tsort
+import adminComands
 import check
 import startCheck
 import checkUserType
+import getOrders
 from telebot import types
 
 bot = telebot.TeleBot("1765121821:AAEsuZbDzF9W215pKIAmE_VDBxcSu_lpa5Y")
@@ -17,6 +19,7 @@ selectionAdressMode = False
 selectionPhoneMode = False
 selectionNameMode = False
 selectionDeliveryMode = False
+feedbackMode = False
 
 newUser = True
 userType = False
@@ -27,8 +30,11 @@ selectionAdress = ''
 selectionPhone = ''
 selectionName = ''
 selectionDelivery = ' '
+feedback = ' sdf'
 
 hideBoard = types.ReplyKeyboardRemove()
+
+adminComands.getOrders()
 
 @bot.message_handler(content_types=['location'])
 def location(message):
@@ -65,6 +71,10 @@ def contact(message):
         check.check_phone(message.contact.phone_number)
         print(check.check_phone(message.contact.phone_number))
 
+@bot.message_handler(commands=["order"])
+def getOrders(message):
+    #adminComands.getOrders(message.from_user.id)
+    print("123")
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -111,12 +121,14 @@ def geophone(message):
 def text_message(message):
     Text = message.text
     print(message.text)
+
     global selectionTshirtMode
     global selectionSizeMode
     global selectionAdressMode
     global selectionPhoneMode
     global selectionNameMode
     global selectionDeliveryMode
+    global feedbackMode
 
     global selectionTshirt
     global selectionSize
@@ -125,17 +137,34 @@ def text_message(message):
     global selectionName
     global selectionDelivery
 
+    if feedbackMode:
+        feedback = Text
+        selection = (selectionTshirt + "\nразмер" + selectionSize + "\nадрес:" + str(selectionAdress) + "\nВаш номер:" + str(selectionPhone)
+                     + "\nспособ связи "+ feedback)
+
+        getOrders.order(message.from_user.id,selectionTshirt, selectionSize, selectionAdress, selectionPhone, selectionName, selectionDelivery,feedback)
+        bot.send_message(message.chat.id,selection , reply_markup = hideBoard )
+        feedbackMode = False
+
+
+
     if selectionNameMode:
-        bot.send_message(message.chat.id, "Ok")
-        selection = (selectionTshirt + "\nразмер" + selectionSize + "\nадрес:" + str(selectionAdress) + "\nВаш номер:" + str(selectionPhone))
-        print(selection)
-        bot.send_message(message.chat.id, selection)
+        keyboard = telebot.types.ReplyKeyboardMarkup(True, False)
+
+        keyboard.row("Телефон", "telegram","whatsapp", "viber")
+        bot.send_message(message.chat.id, "Где с вами лучше связаться для подтверждения заказа", reply_markup = keyboard )
+        #selection = (selectionTshirt + "\nразмер" + selectionSize + "\nадрес:" + str(selectionAdress) + "\nВаш номер:" + str(selectionPhone))
+
+
+
         selectionName = Text
+        feedbackMode = True
         selectionNameMode = False
+
 
     if selectionPhoneMode:
         if check.check_phone(Text):
-            bot.send_message(message.chat.id, "Как к вам обращаться?",reply_markup=hideBoard)
+            bot.send_message(message.chat.id, "Как к вам обращаться?", reply_markup=hideBoard)
             selectionPhone = Text
             selectionNameMode = True
             selectionPhoneMode = False
@@ -147,8 +176,7 @@ def text_message(message):
         keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         button_phone = types.KeyboardButton(text="Отправить номер телефона", request_contact=True)
         keyboard.add(button_phone)
-        bot.send_message(message.chat.id, "Cкажите Ваш номер",
-                         reply_markup=keyboard)
+        bot.send_message(message.chat.id, "Cкажите Ваш номер", reply_markup=keyboard)
 
 
         #bot.send_message(message.chat.id, "Cкажите Ваш номер", reply_markup=hideBoard)
