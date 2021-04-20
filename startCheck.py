@@ -13,7 +13,6 @@ def start(message):
 
     cur.execute(searchID)
     results = cur.fetchone()
-    # print(results)
 
     for i in results:
         if i == 0:
